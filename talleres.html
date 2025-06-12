@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Talleres | Conecta y Crece</title>
+    <style>
+                :root {
+            --azul: #1e88e5;
+            --naranja: #fb8c00;
+            --blanco: #ffffff;
+            --gris-claro: #f5f5f5;
+            --gris-oscuro: #333333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--gris-oscuro);
+            background-color: var(--gris-claro);
+        }
+        
+        header {
+            background-color: var(--azul);
+            color: var(--blanco);
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 1000;
+        }
+        
+        .logo {
+            display: none; /* Oculto por defecto */
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1001;
+        }
+        
+        .menu-hamburguesa {
+            display: none; /* Oculto por defecto */
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1001;
+        }
+        
+        .menu-hamburguesa span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: var(--blanco);
+            margin: 5px 0;
+        }
+        
+        .hero {
+            position: relative;
+            height: 60vh;
+            overflow: hidden;
+        }
+        
+        .hero-video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        /* Estilos para asegurar que la imagen de respaldo se vea bien */
+        background-color: #1e88e5; /* Mismo azul de tu paleta */
+        background-image: url('assets/images/hero-fallback.jpg');
+        background-size: cover;
+        background-position: center;
+        }
+        
+        .hero-video img {
+        /* Estilo para la imagen de respaldo dentro del tag video */
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: none; /* Solo se muestra si el video no carga */
+        }
+
+        video.no-video img {
+        display: block;
+        }   
+
+        .linea-menu {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: var(--blanco);
+            margin: 5px 0;
+            transition: all 0.3s ease;
+        }
+
+        .hero-texto {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(30, 136, 229, 0.8);
+            color: var(--blanco);
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .hero-texto h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero-texto p {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--naranja);
+            color: var(--blanco);
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background-color: #e65100;
+            transform: scale(1.05);
+        }
+        
+        .seccion {
+            padding: 3rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .seccion h2 {
+            color: var(--azul);
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-size: 1.8rem;
+        }
+
+        .video-container {
+            text-align: center;
+        }
+        
+        footer {
+            background-color: var(--azul);
+            color: var(--blanco);
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-top: 2rem;
+        }
+        
+        @media (min-width: 768px) {
+            .hero-texto h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-texto p {
+                font-size: 1.3rem;
+            }
+            
+            .btn {
+                padding: 1rem 2rem;
+                font-size: 1.1rem;
+            }
+        }
+
+        /* Estilos del menú */
+        .menu-navegacion {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 300px;
+            height: 100vh;
+            background-color: var(--azul);
+            padding: 5rem 2rem 2rem;
+            transition: right 0.3s ease;
+            z-index: 1000;
+        }
+
+        .menu-navegacion.activo {
+            right: 0;
+        }
+
+        .menu-navegacion ul {
+            list-style: none;
+        }
+
+        .menu-navegacion a {
+            color: var(--blanco);
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        .menu-navegacion a:hover {
+            color: var(--naranja);
+        }
+
+        .menu-navegacion li {
+            margin-bottom: 1.5rem;
+        }
+
+        .menu-navegacion a {
+            color: var(--blanco);
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        .menu-navegacion a:hover {
+            color: var(--naranja);
+        }
+
+        .cerrar-menu {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: var(--blanco);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Estilos para desktop */
+        @media (min-width: 992px) {
+            .menu-hamburguesa {
+                display: none;
+            }
+            
+            .menu-navegacion {
+                position: static;
+                width: auto;
+                height: auto;
+                background: transparent;
+                padding: 0;
+                display: block !important; /* Fuerza a mostrar en desktop */
+            }
+            
+            .menu-navegacion ul {
+                display: flex;
+                gap: 1.5rem;
+            }
+            
+            .menu-navegacion a {
+                color: var(--blanco);
+                padding: 0.5rem 0;
+                position: relative;
+            }
+
+            .menu-navegacion a:hover {
+                color: var(--naranja);
+            }
+
+                /* Efecto subrayado al hover */
+            .menu-navegacion a::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 0;
+                height: 2px;
+                background: var(--naranja);
+                transition: width 0.3s ease;
+            }
+
+                .menu-navegacion a:hover::after {
+                width: 100%;
+            }
+        }
+        /* Estilos específicos para talleres */
+        .pagina-talleres {
+            padding: 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero-talleres {
+            background: linear-gradient(rgba(30, 136, 229, 0.8), rgba(30, 136, 229, 0.9)), url('../images/hero-talleres.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 3rem 1rem;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+
+        .hero-talleres h1 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .lista-talleres {
+            margin: 2rem 0;
+        }
+
+        .taller {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .taller-fecha {
+            background: var(--naranja);
+            color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            min-width: 70px;
+        }
+
+        .taller-fecha .dia {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: block;
+        }
+
+        .taller-fecha .mes {
+            font-size: 1rem;
+            text-transform: uppercase;
+        }
+
+        .taller-info h3 {
+            color: var(--azul);
+            margin-bottom: 0.5rem;
+        }
+
+        .taller-hora {
+            color: var(--naranja);
+            margin-bottom: 0.5rem;
+        }
+
+        .formulario-inscripcion {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .campo-formulario {
+            margin-bottom: 1.5rem;
+        }
+
+        .campo-formulario label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .campo-formulario input,
+        .campo-formulario select,
+        .campo-formulario textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .btn-enviar {
+            background: var(--naranja);
+            width: 100%;
+            padding: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .testimonios-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .testimonio {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .testimonio blockquote {
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .testimonio cite {
+            font-weight: bold;
+            color: var(--azul);
+        }
+
+        @media (min-width: 768px) {
+            .hero-talleres h1 {
+                font-size: 2.8rem;
+            }
+            
+            .testimonios-container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        /* Para pantallas medianas (tablets) */
+        @media (max-width: 991px) {
+            .menu-hamburguesa {
+                display: block; /* Mostrar solo en móvil/tablet */
+            }
+            
+            .menu-navegacion {
+                display: none; /* Ocultar por defecto en móvil */
+            }
+            
+            .menu-navegacion.activo {
+                display: block; /* Mostrar cuando se activa */
+            }
+        }
+        /* Animación del botón hamburguesa a X */
+        .menu-hamburguesa.abierto .linea-menu:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+
+        .menu-hamburguesa.abierto .linea-menu:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-hamburguesa.abierto .linea-menu:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="logo" style="font-weight: bold; font-size: 1.5rem;">Conecta y Crece</div>
+    <button class="menu-hamburguesa" aria-label="Menú principal" aria-expanded="false">
+        <span class="linea-menu"></span>
+        <span class="linea-menu"></span>
+        <span class="linea-menu"></span>
+    </button>
+    <nav class="menu-navegacion">
+        <ul>
+            <li><a href="/">Inicio</a></li>
+            <li><a href="talleres.html">Talleres</a></li>
+            <li><a href="#recurso">Recursos</a></li>
+            <li><a href="talleres.html">Testimonios</a></li>
+            <li><a href="talleres.html">Contacto</a></li>
+        </ul>
+    </nav>
+</header>
+
+    <main class="pagina-talleres">
+        <section class="hero-talleres">
+            <h1>Talleres Virtuales Interactivos</h1>
+            <p>Aprende estrategias efectivas para prevenir el consumo de alcohol en adolescentes</p>
+        </section>
+
+        <section class="proximos-talleres">
+           
+            <div class="calendario-talleres">
+            <h2>Próximos Talleres</h2>
+            <iframe src="https://calendar.google.com/calendar/embed?src=TU_ID_DE_CALENDARIO%40gmail.com&ctz=America%2FLima" 
+                    style="border: 0" 
+                    width="100%" 
+                    height="400" 
+                    frameborder="0" 
+                    scrolling="no">
+            </iframe>
+            <p class="nota">Haz clic en cualquier evento para ver detalles y obtener el enlace de Zoom/Meet.</p>
+            </div>
+            
+            <div class="lista-talleres">
+                <article class="taller">
+                    <div class="taller-fecha">
+                        <span class="dia">21</span>
+                        <span class="mes">Jun</span>
+                    </div>
+                    <div class="taller-info">
+                        <h3>Cómo hablar con tus hijos sobre el alcohol</h3>
+                        <p class="taller-hora"><i class="far fa-clock"></i> 6:00 PM - 7:30 PM</p>
+                        <p class="taller-desc">Taller interactivo donde aprenderás estrategias de comunicación efectiva para abordar este tema con adolescentes.</p>
+                        <a href="#inscripcion" class="btn">Inscribirse ahora</a>
+                    </div>
+                </article>
+                
+                <article class="taller">
+                    <div class="taller-fecha">
+                        <span class="dia">28</span>
+                        <span class="mes">Jun</span>
+                    </div>
+                    <div class="taller-info">
+                        <h3>Presión social: Cómo ayudar a tu hijo a decir NO</h3>
+                        <p class="taller-hora"><i class="far fa-clock"></i> 6:00 PM - 7:00 PM</p>
+                        <p class="taller-desc">Identifica situaciones de riesgo y aprende técnicas de resistencia para adolescentes.</p>
+                        <a href="#inscripcion" class="btn">Inscribirse ahora</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="inscripcion" id="inscripcion">
+            <h2>Inscripción a Talleres</h2>
+            <form class="formulario-inscripcion">
+                <div class="campo-formulario">
+                    <label for="nombre">Nombre completo:</label>
+                    <input type="text" id="nombre" required>
+                </div>
+                
+                <div class="campo-formulario">
+                    <label for="email">Correo electrónico:</label>
+                    <input type="email" id="email" required>
+                </div>
+                
+                <div class="campo-formulario">
+                    <label for="telefono">Teléfono (opcional):</label>
+                    <input type="tel" id="telefono">
+                </div>
+                
+                <div class="campo-formulario">
+                    <label for="taller">Taller de interés:</label>
+                    <select id="taller" required>
+                        <option value="">Selecciona un taller</option>
+                        <option value="taller1">Cómo hablar con tus hijos sobre el alcohol (21 Jun)</option>
+                        <option value="taller2">Presión social: Cómo ayudar a tu hijo a decir NO (28 Jun)</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="btn btn-enviar">Enviar inscripción</button>
+            </form>
+        </section>
+
+        <section class="testimonios-talleres">
+            <h2>Lo que dicen los participantes</h2>
+            <div class="testimonios-container">
+                <div class="testimonio">
+                    <blockquote>"Los talleres me dieron herramientas concretas para hablar con mi hija. Ahora tenemos diálogos más abiertos."</blockquote>
+                    <cite>- María, madre de adolescente</cite>
+                </div>
+                <div class="testimonio">
+                    <blockquote>"Aprendí que no soy el único que enfrenta presión para tomar alcohol. Las técnicas para decir NO son muy útiles."</blockquote>
+                    <cite>- Juan, 16 años</cite>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Conecta y Crece - Prevención de alcoholismo adolescente en Huancayo</p>
+        <p>© 2025 Todos los derechos reservados</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Manejo del menú hamburguesa
+    const menuBtn = document.querySelector('.menu-hamburguesa');
+    const menuNav = document.querySelector('.menu-navegacion');
+    
+    if(menuBtn) {
+        menuBtn.addEventListener('click', function() {
+            const isExpanded = this.getAttribute('aria-expanded') === 'true';
+            this.setAttribute('aria-expanded', !isExpanded);
+            menuNav.classList.toggle('activo');
+            this.classList.toggle('abierto');
+        });
+    }
+    
+    // Cerrar menú al hacer clic en enlace (solo móvil)
+    const navLinks = document.querySelectorAll('.menu-navegacion a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            if(window.innerWidth < 992 && menuBtn && menuNav) {
+                menuNav.classList.remove('activo');
+                menuBtn.setAttribute('aria-expanded', 'false');
+                menuBtn.classList.remove('abierto');
+            }
+        });
+    });
+    
+    // Ajustar dinámicamente al cambiar tamaño de pantalla
+    window.addEventListener('resize', function() {
+        if(window.innerWidth >= 992) {
+            if(menuNav) menuNav.classList.remove('activo');
+            if(menuBtn) {
+                menuBtn.setAttribute('aria-expanded', 'false');
+                menuBtn.classList.remove('abierto');
+            }
+        }
+    });
+    
+    // Manejo del formulario (solo en talleres.html)
+    const formInscripcion = document.querySelector('.formulario-inscripcion');
+    if(formInscripcion) {
+        formInscripcion.addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('¡Inscripción enviada! Te enviaremos los detalles del taller por correo.');
+            this.reset();
+        });
+    }
+    
+    // Manejo del video hero (solo en index.html)
+    const heroVideo = document.querySelector('.hero-video');
+    if(heroVideo) {
+        heroVideo.addEventListener('error', function() {
+            this.classList.add('no-video');
+        });
+        
+        if(heroVideo.readyState > 0) {
+            const isPlaying = heroVideo.currentTime > 0 && !heroVideo.paused 
+                            && !heroVideo.ended && heroVideo.readyState > 2;
+            
+            if(!isPlaying) {
+                heroVideo.classList.add('no-video');
+            }
+        }
+    }
+});
+</script>
+</html>
