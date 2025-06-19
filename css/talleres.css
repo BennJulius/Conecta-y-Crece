@@ -1,0 +1,715 @@
+/* ===== ESTILOS ESPECÍFICOS PARA TALLERES ===== */
+
+/* Hero Section */
+.hero-talleres {
+    background: linear-gradient(rgba(251, 140, 0, 0.8), rgba(251, 140, 0, 0.9)), 
+                url('../img/hero/talleres-bg.jpg') no-repeat center center;
+    background-size: cover;
+    height: 50vh;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: var(--blanco);
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+.hero-talleres .contenedor {
+    width: 100%;
+}
+
+.hero-talleres h1 {
+    font-size: 2.8rem;
+    margin-bottom: 1rem;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+}
+
+.hero-talleres p {
+    font-size: 1.3rem;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+
+
+/* Sección Usuarios */
+.lista-usuarios {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.usuario-item {
+    position: relative;
+    width: 150px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.usuario-item h3 {
+    background: var(--azul);
+    color: white;
+    padding: 0.8rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.usuario-item:hover h3 {
+    background: var(--naranja);
+    transform: translateY(-5px);
+}
+
+.usuario-img {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 100;
+    pointer-events: none;
+}
+
+.usuario-item:hover .usuario-img {
+    opacity: 1;
+    visibility: visible;
+    bottom: calc(100% + 15px);
+}
+
+.usuario-img img {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    border: 3px solid white;
+}
+
+/* Lista de usuarios mejorada */
+/* Lista de usuarios mejorada */
+.lista-usuarios-mejorada {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 2rem;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.usuario-item-mejorado {
+    display: grid;
+    grid-template-columns: 1fr 200px;
+    align-items: center;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.usuario-texto {
+    padding: 1.5rem;
+}
+
+.usuario-imagen {
+    height: 100%;
+}
+
+.usuario-imagen img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .usuario-item-mejorado {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 150px;
+    }
+    
+    .usuario-texto {
+        order: 1;
+    }
+    
+    .usuario-imagen {
+        order: 2;
+    }
+}
+
+@media (max-width: 480px) {
+    .usuario-item-mejorado {
+        grid-template-rows: auto 120px;
+    }
+}
+
+/* Estilos para la tabla de usuarios */
+.tabla-usuarios {
+    margin-top: 2rem;
+}
+
+.fila-usuarios {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.celda-usuario {
+    flex: 1;
+    background: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+}
+
+.celda-usuario:hover {
+    transform: translateY(-5px);
+}
+
+.usuario-img-tabla {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 1rem;
+    border: 3px solid var(--azul);
+}
+
+.usuario-img-tabla img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.placeholder-img {
+    width: 100%;
+    height: 100%;
+    background: var(--gris-claro);
+    border-radius: 50%;
+}
+
+.celda-usuario h3 {
+    color: var(--azul);
+    margin-bottom: 0.5rem;
+    flex-grow: 1;
+}
+
+.celda-usuario p {
+    color: var(--gris-oscuro);
+    font-size: 0.9rem;
+    margin-top: auto;
+}
+
+.celda-vacia {
+    opacity: 0.5;
+    background: repeating-linear-gradient(
+        45deg,
+        var(--gris-claro),
+        var(--gris-claro) 10px,
+        #fafafa 10px,
+        #fafafa 20px
+    );
+    position: relative;
+}
+
+.celda-vacia::after {
+    content: "Plantilla";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--azul);
+    font-weight: bold;
+    opacity: 0.7;
+}
+
+@media (max-width: 992px) {
+    .fila-usuarios {
+        flex-wrap: wrap;
+    }
+    
+    .celda-usuario {
+        min-width: calc(50% - 0.75rem);
+    }
+}
+
+@media (max-width: 576px) {
+    .celda-usuario {
+        min-width: 100%;
+    }
+    
+    .celda-vacia {
+        display: none;
+    }
+}
+
+/* Tarjetas Emocionales */
+.grid-tarjetas {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.tarjeta {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transition: transform 0.3s ease;
+}
+
+.tarjeta:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.tarjeta p {
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+}
+
+.btn-descarga {
+    display: inline-block;
+    background: var(--azul);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    align-self: flex-start;
+}
+
+.btn-descarga:hover {
+    background: var(--naranja);
+}
+
+/* ===== ESTILOS PARA PREVISUALIZACIÓN EN TARJETAS ===== */
+.tarjeta {
+    position: relative; /* Para contener elementos absolutos */
+}
+
+.pdf-preview-container {
+    width: 100%;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    margin: 0.5rem 0;
+    border-radius: 4px;
+    background: #f9f9f9;
+}
+
+.pdf-preview-container.visible {
+    max-height: 300px; /* Altura máxima al mostrarse */
+    border: 1px solid #ddd;
+}
+
+.pdf-preview-canvas {
+    width: 100% !important;
+    height: auto !important;
+    display: block;
+}
+
+.btn-toggle-preview {
+    background: var(--azul);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+}
+
+.btn-toggle-preview:hover {
+    background: var(--naranja);
+}
+
+.btn-toggle-preview i {
+    margin-right: 5px;
+}
+
+/* Semáforo del Estrés */
+.semaforo-container {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin: 2rem 0;
+    text-align: center;
+}
+
+.semaforo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 120px;
+    margin: 0 auto 2rem;
+    padding: 1rem;
+    background: #333;
+    border-radius: 20px;
+}
+
+.luz {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    opacity: 0.3;
+    transition: all 0.3s ease;
+}
+
+.luz:hover, .luz.activa {
+    opacity: 1;
+}
+
+.circulo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 0.5rem;
+}
+
+.rojo .circulo {
+    background: #ff3b30;
+    box-shadow: 0 0 10px #ff3b30;
+}
+
+.amarillo .circulo {
+    background: #ffcc00;
+    box-shadow: 0 0 10px #ffcc00;
+}
+
+.verde .circulo {
+    background: #34c759;
+    box-shadow: 0 0 10px #34c759;
+}
+
+.estado-semaforo {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 1rem 0;
+    min-height: 30px;
+}
+
+.recomendaciones {
+    background: #f5f5f5;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+}
+
+/* Controles del semáforo */
+.semaforo-controls {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.btn-sonido {
+    background: var(--gris-oscuro);
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+}
+
+.btn-sonido:hover {
+    background: #555;
+}
+
+/* Modo Relajación (activado con semáforo rojo) */
+.modo-relajacion {
+    background: #e3f2fd;
+    color: #0d47a1;
+    transition: all 0.5s ease;
+}
+
+/* Muro de Frases Incompletas */
+.frases-container {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin: 2rem 0;
+}
+
+.frase {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #eee;
+}
+
+.input-frase {
+    border: none;
+    border-bottom: 2px solid var(--azul);
+    padding: 0.3rem;
+    margin: 0 0.2rem;
+    min-width: 100px;
+    transition: all 0.3s ease;
+}
+
+.input-frase:focus {
+    outline: none;
+    border-color: var(--naranja);
+}
+
+.controles-frases {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.btn-secundario {
+    background: var(--azul);
+}
+
+.btn-secundario:hover {
+    background: #1565c0;
+}
+
+.informe-container {
+    background: #f9f9f9;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-top: 2rem;
+    display: none;
+}
+
+.informe-container h3 {
+    color: var(--azul);
+    margin-bottom: 1rem;
+}
+
+/* Mejoras al semáforo */
+.semaforo {
+    width: 120px;
+    margin: 0 auto;
+    padding: 1.5rem;
+    background: #2c3e50;
+    border-radius: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.etiqueta-semaforo {
+    color: white;
+    font-size: 0.7rem;
+    margin-top: 0.5rem;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.luz.activa .etiqueta-semaforo {
+    opacity: 1;
+    font-weight: bold;
+}
+
+.recomendaciones {
+    background: rgba(255,255,255,0.9);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-top: 1.5rem;
+}
+
+.recomendaciones h4 {
+    color: var(--azul);
+    margin-bottom: 1rem;
+}
+
+.recomendaciones ul {
+    padding-left: 1.5rem;
+}
+
+.recomendaciones li {
+    margin-bottom: 0.5rem;
+    color: var(--gris-oscuro);
+}
+
+/* Cambiar el color ámbar del semáforo */
+.amarillo .circulo {
+    background: #ff9e40; /* Naranja más suave */
+    box-shadow: 0 0 15px rgba(255, 158, 64, 0.6);
+    background: linear-gradient(135deg, #ff9e40, #ffcc80); /* Degradado suave */
+}
+
+/* Añadir animación sutil al semáforo */
+.luz {
+    transition: all 0.3s ease;
+}
+
+.luz.activa .circulo {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* Ajustar el rojo para que combine mejor */
+.rojo .circulo {
+    background: linear-gradient(135deg, #ff5252, #ff867f);
+    box-shadow: 0 0 15px rgba(255, 82, 82, 0.6);
+}
+
+/* Actividad Anti-Estrés */
+/* Dado mejorado */
+.dado {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    margin: 0 auto 2rem;
+    transform-style: preserve-3d;
+    transition: transform 1s ease;
+    transform: rotateX(0deg) rotateY(0deg); /* Estado inicial */
+}
+
+.cara {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: var(--naranja);
+    color: white;
+    border: 2px solid var(--naranja);
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5rem;
+    box-shadow: inset 0 0 15px rgba(0,0,0,0.2);
+}
+
+/* Ajustar tamaño del icono */
+.cara i {
+    font-size: 105px;
+}
+
+/* Posicionamiento correcto de las caras */
+.cara:nth-child(1) { transform: rotateY(0deg) translateZ(50px); }   /* Frente */
+.cara:nth-child(2) { transform: rotateY(180deg) translateZ(50px); } /* Atrás */
+.cara:nth-child(3) { transform: rotateY(90deg) translateZ(50px); }  /* Derecha */
+.cara:nth-child(4) { transform: rotateY(-90deg) translateZ(50px); } /* Izquierda */
+.cara:nth-child(5) { transform: rotateX(90deg) translateZ(50px); }  /* Arriba */
+.cara:nth-child(6) { transform: rotateX(-90deg) translateZ(50px); } /* Abajo */
+.accion-dado {
+    margin-top: 2rem;
+    padding: 1rem;
+    background: var(--azul);
+    color: white;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Footer */
+footer {
+    background: var(--azul);
+    color: white;
+    padding: 3rem 0 1rem;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.footer-logo h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.footer-links h4,
+.footer-social h4 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.footer-links ul {
+    list-style: none;
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 0.5rem;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--naranja);
+}
+
+.social-icons {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-icons a {
+    color: white;
+    font-size: 1.2rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+    background: var(--naranja);
+    transform: translateY(-3px);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .grid-tarjetas {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-talleres {
+        height: 40vh;
+    }
+    
+    .hero-talleres h1 {
+        font-size: 2rem;
+    }
+    
+    .grid-tarjetas {
+        grid-template-columns: 1fr;
+    }
+    
+    .controles-frases {
+        flex-direction: column;
+    }
+    
+    .usuario-item {
+        width: 120px;
+    }
+}

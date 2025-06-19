@@ -3,431 +3,225 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conecta y Crece - Prevención de alcoholismo adolescente en Huancayo</title>
-    <style>
-        :root {
-            --azul: #1e88e5;
-            --naranja: #fb8c00;
-            --blanco: #ffffff;
-            --gris-claro: #f5f5f5;
-            --gris-oscuro: #333333;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            line-height: 1.6;
-            color: var(--gris-oscuro);
-            background-color: var(--gris-claro);
-        }
-        
-        header {
-            background-color: var(--azul);
-            color: var(--blanco);
-            padding: 1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: relative;
-            z-index: 1000;
-        }
-        
-        .logo {
-            display: none; /* Oculto por defecto */
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 0.5rem;
-            z-index: 1001;
-        }
-        
-        .menu-hamburguesa {
-            display: none; /* Oculto por defecto */
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 0.5rem;
-            z-index: 1001;
-        }
-
-        .linea-menu {
-            display: block;
-            width: 25px;
-            height: 3px;
-            background-color: var(--blanco);
-            margin: 5px 0;
-            transition: all 0.3s ease;
-        }
-        
-        .menu-hamburguesa span {
-            display: block;
-            width: 25px;
-            height: 3px;
-            background-color: var(--blanco);
-            margin: 5px 0;
-        }
-        
-        .hero {
-            position: relative;
-            height: 60vh;
-            overflow: hidden;
-        }
-        
-        .hero-video {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        /* Estilos para asegurar que la imagen de respaldo se vea bien */
-        background-color: #1e88e5; /* Mismo azul de tu paleta */
-        background-image: url('assets/images/hero-fallback.jpg');
-        background-size: cover;
-        background-position: center;
-        }
-        
-        .hero-video img {
-        /* Estilo para la imagen de respaldo dentro del tag video */
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        display: none; /* Solo se muestra si el video no carga */
-        }
-
-        video.no-video img {
-        display: block;
-        }   
-
-        .hero-texto {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(30, 136, 229, 0.8);
-            color: var(--blanco);
-            padding: 2rem;
-            text-align: center;
-        }
-        
-        .hero-texto h1 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-        
-        .hero-texto p {
-            font-size: 1.2rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .btn {
-            display: inline-block;
-            background-color: var(--naranja);
-            color: var(--blanco);
-            padding: 0.8rem 1.5rem;
-            border-radius: 25px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: all 0.3s ease;
-        }
-        
-        .btn:hover {
-            background-color: #e65100;
-            transform: scale(1.05);
-        }
-        
-        .seccion {
-            padding: 3rem 1rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .seccion h2 {
-            color: var(--azul);
-            margin-bottom: 1.5rem;
-            text-align: center;
-            font-size: 1.8rem;
-        }
-
-        .video-container {
-            text-align: center;
-        }
-        
-        footer {
-            background-color: var(--azul);
-            color: var(--blanco);
-            text-align: center;
-            padding: 2rem 1rem;
-            margin-top: 2rem;
-        }
-        
-        @media (min-width: 768px) {
-            .hero-texto h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero-texto p {
-                font-size: 1.3rem;
-            }
-            
-            .btn {
-                padding: 1rem 2rem;
-                font-size: 1.1rem;
-            }
-        }
-
-        /* Estilos del menú */
-        .menu-navegacion {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: 80%;
-            max-width: 300px;
-            height: 100vh;
-            background-color: var(--azul);
-            padding: 5rem 2rem 2rem;
-            transition: right 0.3s ease;
-            z-index: 1000;
-        }
-
-        .menu-navegacion.activo {
-            right: 0;
-        }
-
-        .menu-navegacion ul {
-            list-style: none;
-        }
-
-        .menu-navegacion li {
-            margin-bottom: 1.5rem;
-        }
-
-        .menu-navegacion a {
-            color: var(--blanco);
-            text-decoration: none;
-            font-size: 1.2rem;
-            transition: color 0.3s ease;
-        }
-
-        .menu-navegacion a:hover {
-            color: var(--naranja);
-        }
-
-        .cerrar-menu {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: none;
-            border: none;
-            color: var(--blanco);
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        /* Estilos para desktop */
-        @media (min-width: 992px) {
-            .menu-hamburguesa {
-                display: none;
-            }
-            
-            .menu-navegacion {
-            position: static;
-            width: auto;
-            height: auto;
-            background: transparent;
-            padding: 0;
-            display: block !important; /* Fuerza a mostrar en desktop */
-            }
-            
-            .menu-navegacion ul {
-            display: flex;
-            gap: 1.5rem;
-            }
-            
-            .menu-navegacion li {
-            margin-bottom: 0;
-            }
-
-            .menu-navegacion a {
-            color: var(--blanco);
-            padding: 0.5rem 0;
-            position: relative;
-            }
-            .menu-navegacion a:hover {
-            color: var(--naranja);
-            }
-                /* Efecto subrayado al hover */
-            .menu-navegacion a::after {
-                content: '';
-                position: absolute;
-                bottom: 0;
-                left: 0;
-                width: 0;
-                height: 2px;
-                background: var(--naranja);
-                transition: width 0.3s ease;
-            }
-            .menu-navegacion a:hover::after {
-            width: 100%;
-            }
-        }
-        /* Para pantallas medianas (tablets) */
-        @media (max-width: 991px) {
-            .menu-hamburguesa {
-                display: block; /* Mostrar solo en móvil/tablet */
-            }
-            
-            .menu-navegacion {
-                display: none; /* Ocultar por defecto en móvil */
-            }
-            
-            .menu-navegacion.activo {
-                display: block; /* Mostrar cuando se activa */
-            }
-        }
-    </style>
+    <title>Conecta y Crece - Prevención de alcoholismo adolescente</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/home.css">
+    <!-- Fuente de íconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-<header>
-    <div class="logo" style="font-weight: bold; font-size: 1.5rem;">Conecta y Crece</div>
-    <button class="menu-hamburguesa" aria-label="Menú principal" aria-expanded="false">
-        <span class="linea-menu"></span>
-        <span class="linea-menu"></span>
-        <span class="linea-menu"></span>
-    </button>
-    <nav class="menu-navegacion">
-        <ul>
-            <li><a href="index.html">Inicio</a></li>
-            <li><a href="talleres.html">Talleres</a></li>
-            <li><a href="#recurso">Recursos</a></li>
-            <li><a href="talleres.html">Testimonios</a></li>
-            <li><a href="talleres.html">Contacto</a></li>
-        </ul>
-    </nav>
-</header>
-    
+    <!-- Header/Navbar -->
+    <header>
+        <div class="logo">Conecta y Crece</div>
+        <button class="menu-hamburguesa" aria-label="Menú principal">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav class="menu-navegacion">
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="talleres.html">Talleres</a></li>
+                <li><a href="#recursos">Recursos</a></li>
+                <li><a href="#testimonios">Testimonios</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section con Video -->
     <section class="hero">
-        <video class="hero-video" autoplay muted loop>
+        <video class="hero-video" autoplay muted loop playsinline>
             <source src="video-hero.mp4" type="video/mp4">
             <!-- Imagen de respaldo si el video no carga -->
-            <img src="hero-fallback.jpg" alt="Familias y adolescentes conversando">
+            <img src="img/hero/hero-fallback.jpg" alt="Familias y adolescentes conversando">
         </video>
         
-        <div class="hero-texto">
+        <div class="hero-contenido">
             <h1>¿Sabías que el alcohol afecta el cerebro adolescente?</h1>
-            <p>En Huancayo, 6 de cada 10 jóvenes han consumido alcohol por presión social. Conéctate con talleres gratuitos para familias.</p>
-            <a href="talleres.html" class="btn">¡Inscríbete aquí!</a>
+            <p>En Huancayo central, 6 de cada 10 jóvenes han consumido alcohol por presión social. Conéctate con talleres gratuitos para familias.</p>
+            <div class="hero-botones">
+                <a href="talleres.html" class="btn btn-primario">¡Inscríbete aquí!</a>
+                <a href="#recursos" class="btn btn-secundario">Ver recursos</a>
+            </div>
         </div>
     </section>
-    
-    <section class="seccion">
-        <h2>Nuestros Talleres Virtuales</h2>
-        <p>Ofrecemos sesiones interactivas donde aprenderás estrategias efectivas para prevenir el consumo de alcohol en adolescentes.</p>
-        <div class="calendario">
-            <h2>Próximos Talleres</h2>
-            <iframe src="https://calendar.google.com/calendar/embed?src=TU_ID_DE_CALENDARIO%40gmail.com&ctz=America%2FLima" 
-                    style="border: 0" 
-                    width="100%" 
-                    height="400" 
-                    frameborder="0" 
-                    scrolling="no">
-            </iframe>
-            <p class="nota">Haz clic en cualquier evento para ver detalles y obtener el enlace de Zoom/Meet.</p>
-        </div>
-    </section>
-    
-    <section class="seccion" style="background-color: var(--blanco);">
-        <h2>Recursos Gratuitos</h2>
-        <p>Descarga materiales prácticos y videos educativos para fortalecer la comunicación familiar.</p>
-        <div class="recurso">
-        <h3>Guía para padres: Señales de alerta</h3>
-        <p>PDF descargable con información clave para identificar comportamientos de riesgo.</p>
-        <a href="#" class="btn">Descargar</a>
-        </div>
 
-        <div class="video-recurso">
-        <h3>Video: cómo decir “NO” sin miedo ni culpa</h3>
-        <div class="video-container">
-        <iframe width="80%" height="500" src="https://www.youtube.com/embed/OM-YNbquIkw?si=mLf8BQrrSKJxMlTc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        </div>
-        <h3>Derecho Reservado para Bernando Stamateas</h3>
+    <!-- Sección Informativa -->
+    <section class="seccion informacion">
+        <div class="contenedor">
+            <h2>Focos críticos en Huancayo</h2>
+            <p class="destacado">Zonas como la Rivera y Pje. los Héroes son áreas donde los menores son intervenidos en operativos de prevención.</p>
+            
+            <div class="datos-container">
+                <div class="dato-item">
+                    <i class="fas fa-users icono-dato"></i>
+                    <h3>6 de cada 10</h3>
+                    <p>Adolescentes han consumido alcohol por presión social</p>
+                </div>
+                
+                <div class="dato-item">
+                    <i class="fas fa-map-marker-alt icono-dato"></i>
+                    <h3>2 zonas</h3>
+                    <p>Críticas identificadas en Huancayo</p>
+                </div>
+                
+                <div class="dato-item">
+                    <i class="fas fa-calendar-check icono-dato"></i>
+                    <h3>10+ talleres</h3>
+                    <p>Disponibles mensualmente</p>
+                </div>
+            </div>
         </div>
     </section>
-    
-    <footer>
-        <p>Conecta y Crece - Prevención de alcoholismo adolescente en Huancayo</p>
-        <p>© 2025 Todos los derechos reservados</p>
-    </footer>
-</body>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Manejo del menú hamburguesa
-    const menuBtn = document.querySelector('.menu-hamburguesa');
-    const menuNav = document.querySelector('.menu-navegacion');
-    
-    if(menuBtn) {
-        menuBtn.addEventListener('click', function() {
-            const isExpanded = this.getAttribute('aria-expanded') === 'true';
-            this.setAttribute('aria-expanded', !isExpanded);
-            menuNav.classList.toggle('activo');
-            this.classList.toggle('abierto');
-        });
-    }
-    
-    // Cerrar menú al hacer clic en enlace (solo móvil)
-    const navLinks = document.querySelectorAll('.menu-navegacion a');
-    navLinks.forEach(link => {
-        link.addEventListener('click', function() {
-            if(window.innerWidth < 992 && menuBtn && menuNav) {
-                menuNav.classList.remove('activo');
-                menuBtn.setAttribute('aria-expanded', 'false');
-                menuBtn.classList.remove('abierto');
-            }
-        });
-    });
-    
-    // Ajustar dinámicamente al cambiar tamaño de pantalla
-    window.addEventListener('resize', function() {
-        if(window.innerWidth >= 992) {
-            if(menuNav) menuNav.classList.remove('activo');
-            if(menuBtn) {
-                menuBtn.setAttribute('aria-expanded', 'false');
-                menuBtn.classList.remove('abierto');
-            }
-        }
-    });
-    
-    // Manejo del formulario (solo en talleres.html)
-    const formInscripcion = document.querySelector('.formulario-inscripcion');
-    if(formInscripcion) {
-        formInscripcion.addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('¡Inscripción enviada! Te enviaremos los detalles del taller por correo.');
-            this.reset();
-        });
-    }
-    
-    // Manejo del video hero (solo en index.html)
-    const heroVideo = document.querySelector('.hero-video');
-    if(heroVideo) {
-        heroVideo.addEventListener('error', function() {
-            this.classList.add('no-video');
-        });
-        
-        if(heroVideo.readyState > 0) {
-            const isPlaying = heroVideo.currentTime > 0 && !heroVideo.paused 
-                            && !heroVideo.ended && heroVideo.readyState > 2;
+
+    <!-- Sección de Testimonio en Video -->
+    <section class="seccion testimonio-video">
+        <div class="contenedor">
+            <h2>Historia de Superación</h2>
+            <p class="subtitulo">Conoce el testimonio de Alejandro, quien superó el alcoholismo en su adolescencia</p>
             
-            if(!isPlaying) {
-                heroVideo.classList.add('no-video');
-            }
-        }
-    }
-});
-</script>
+            <div class="video-testimonial">
+                <div class="video-container">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/W8U-6xY2VJY?si=disz2XzxwXwtEr5B" 
+                    title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="testimonio-texto">
+                    <blockquote>
+                        "Emilia acudió a Adictalia para encontrar un tratamiento para su hijo Alejandro, 
+                        quien sufría alcoholismo. Un año después, cuentan en primera persona cómo fue el 
+                        proceso y nos abren sus corazones para descubrir que salir de la adicción es posible."
+                    </blockquote>
+                    <p class="autor">- Alejandro, 48 años</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Recursos Destacados -->
+    <section class="seccion recursos-destacados" id="recursos">
+        <div class="contenedor">
+            <h2>Recursos Destacados</h2>
+            <p>Materiales gratuitos para familias y educadores</p>
+            
+            <div class="recursos-grid">
+                <a href="recursos/guias/guia-prevencion.pdf" class="recurso-card" download>
+                    <i class="fas fa-book-open icono-recurso"></i>
+                    <h3>Guía para Padres</h3>
+                    <p>Señales de alerta y comunicación efectiva</p>
+                    <span class="btn-descarga">Descargar <i class="fas fa-download"></i></span>
+                </a>
+                
+                <a href="talleres.html" class="recurso-card">
+                    <i class="fas fa-calendar-alt icono-recurso"></i>
+                    <h3>Talleres Virtuales</h3>
+                    <p>Próximas fechas y sesiones disponibles</p>
+                    <span class="btn-ver">Ver calendario</span>
+                </a>
+                
+                <a href="#testimonios" class="recurso-card">
+                    <i class="fas fa-comments icono-recurso"></i>
+                    <h3>Experiencias</h3>
+                    <p>Testimonios de familias participantes</p>
+                    <span class="btn-ver">Leer testimonios</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Testimonios -->
+    <section class="seccion testimonios" id="testimonios">
+        <div class="contenedor">
+            <h2>Lo que dicen las familias</h2>
+            <p>Experiencias reales de participantes</p>
+            
+            <div class="testimonios-container">
+                <div class="testimonio">
+                    <div class="testimonio-texto">
+                        <p>"Los talleres me dieron herramientas concretas para hablar con mi hija. Ahora tenemos diálogos más abiertos."</p>
+                    </div>
+                    <div class="testimonio-autor">
+                        <p>- María, madre de adolescente</p>
+                    </div>
+                </div>
+                
+                <div class="testimonio">
+                    <div class="testimonio-texto">
+                        <p>"Aprendí que no soy el único que enfrenta presión para tomar alcohol. Las técnicas para decir NO son muy útiles."</p>
+                    </div>
+                    <div class="testimonio-autor">
+                        <p>- Juan, 16 años</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Contacto -->
+    <section class="seccion contacto" id="contacto">
+        <div class="contenedor">
+            <h2>Contacto</h2>
+            <p>¿Quieres llevar nuestros talleres a tu escuela o comunidad?</p>
+            
+            <form class="formulario-contacto">
+                <div class="form-group">
+                    <label for="nombre">Nombre completo:</label>
+                    <input type="text" id="nombre" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Correo electrónico:</label>
+                    <input type="email" id="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="mensaje">Mensaje:</label>
+                    <textarea id="mensaje" rows="4" required></textarea>
+                </div>
+                
+                <button type="submit" class="btn btn-primario">Enviar mensaje</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="contenedor">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3>Conecta y Crece</h3>
+                    <p>Prevención de alcoholismo adolescente en Huancayo</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Enlaces rápidos</h4>
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="talleres.html">Talleres</a></li>
+                        <li><a href="#recursos">Recursos</a></li>
+                        <li><a href="#testimonios">Testimonios</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-social">
+                    <h4>Síguenos</h4>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 Conecta y Crece. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/home.js"></script>
+</body>
 </html>
